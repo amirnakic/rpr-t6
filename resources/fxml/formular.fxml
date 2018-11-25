@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -117,7 +118,72 @@
       </TitledPane>
       <TitledPane animated="false" text="Podaci o studiju" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <GridPane layoutY="15.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="106.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="94.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="106.0" text="Odsjek :" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="129.0" text="Godina :" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="113.0" text="Ciklus :" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="131.0" text="Status :" GridPane.rowIndex="3" />
+                        <Label text="Boračka kategorija :" GridPane.rowIndex="4" />
+                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" >
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="AE" />
+                                    <String fx:value="EE" />
+                                    <String fx:value="TK" />
+                                    <String fx:value="RI" />
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" >
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Prva" />
+                                 <String fx:value="Druga" />
+                                 <String fx:value="Treća" />
+                             </FXCollections>
+                         </items>
+                     </ChoiceBox>
+                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" >
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Bachelor" />
+                                 <String fx:value="Master" />
+                             </FXCollections>
+                         </items>
+                     </ChoiceBox>
+                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" >
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Redovan" />
+                                    <String fx:value="Samofinansirajući" />
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" >
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="DA" />
+                                    <String fx:value="NE" />
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                     </children>
+                  </GridPane>
+               </children></AnchorPane>
         </content>
       </TitledPane>
    </children>
