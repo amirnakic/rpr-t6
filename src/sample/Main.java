@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../../resources/fxml/formular.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/formular.fxml"));
         primaryStage.setTitle("Formular za unos podataka o studentu");
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.setResizable(false);
