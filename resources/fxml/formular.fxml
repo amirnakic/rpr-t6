@@ -126,7 +126,7 @@
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="103.0" text="Kontakt telefon :" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="99.0" text="E-mail adresa :" GridPane.rowIndex="2" />
                         <TextField fx:id="adressField" promptText="Kontakt adresa" GridPane.columnIndex="1" />
-                        <TextField fx:id="telephoneField" promptText="Kontakt telefon" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="telephoneField" promptText="xxx-xxxxxx(x)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="eMailField" promptText="E-mail adresa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>

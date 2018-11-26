@@ -7,9 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller {
 
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     public TextField nameField;
     public TextField surnameField;
     public TextField indexField;
@@ -31,7 +34,9 @@ public class Controller {
     public boolean indeksValidan;
     public boolean jmbgValidan;
     public boolean datumValidan;
-    //public boolean mjestoValidno;
+    public boolean telBrojValidan;
+    public boolean emailValidan;
+    public boolean mjestoValidno;
 
     public boolean validnoIme(String s) {
         if (s.length() > 20 || s.length() < 1) return false;
@@ -95,14 +100,26 @@ public class Controller {
         return true;
     }
 
-    /*public boolean validnoMjesto(String s) {
+    public boolean validnoMjesto(String s) {
         if (s.isEmpty() || s.length() > 20) return false;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (!Character.isLetter(c)) return false;
+            if (!(Character.isLetter(c) || c==' ')) return false;
         }
         return true;
-    }*/
+    }
+
+    public static boolean isValidEmail(String emailStr){
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        return matcher.find();
+    }
+    public static boolean isValidTelephone(String nmbr){
+        Pattern pattern = Pattern.compile("\\d{3}-\\d{7}");
+        Pattern pattern1 = Pattern.compile("\\d{3}-\\d{6}");
+        Matcher matcher = pattern.matcher(nmbr);
+        Matcher matcher1 = pattern1.matcher(nmbr);
+        return (matcher.matches()|| matcher1.matches());
+    }
 
     @FXML
     public void initialize() {
@@ -186,7 +203,57 @@ public class Controller {
                 }
             }
         });
+        telephoneField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
+                if (isValidTelephone(n)) {
+                    telephoneField.getStyleClass().removeAll("poljeNeispravno");
+                    telephoneField.getStyleClass().add("poljeIspravno");
+                    telBrojValidan = true;
+                } else {
+                    telephoneField.getStyleClass().removeAll("poljeIspravno");
+                    telephoneField.getStyleClass().add("poljeNeispravno");
+                    telBrojValidan = false;
+                }
+            }
+        });
+        emailValidan = false;
+        eMailField.getStyleClass().add("poljeNeispravno");
+        eMailField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
+                if (isValidEmail(n)) {
+                    eMailField.getStyleClass().removeAll("poljeNeispravno");
+                    eMailField.getStyleClass().add("poljeIspravno");
+                    emailValidan = true;
+                } else {
+                    eMailField.getStyleClass().removeAll("poljeIspravno");
+                    eMailField.getStyleClass().add("poljeNeispravno");
+                    emailValidan = false;
+                }
+            }
+        });
+        mjestoValidno = false;
+        placeOfBirthField.getStyleClass().add("poljeNeispravno");
+        placeOfBirthField.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
+                if (validnoMjesto(n)) {
+                    placeOfBirthField.getStyleClass().removeAll("poljeNeispravno");
+                    placeOfBirthField.getStyleClass().add("poljeIspravno");
+                    mjestoValidno = true;
+                } else {
+                    placeOfBirthField.getStyleClass().removeAll("poljeIspravno");
+                    placeOfBirthField.getStyleClass().add("poljeNeispravno");
+                    mjestoValidno = false;
+                }
+            }
+        });
+    }
 
+    public boolean formularValidan() {
+        if (!(imeValidno && prezimeValidno && indeksValidan && jmbgValidan && datumValidan && emailValidan && telBrojValidan && mjestoValidno && genderBox.isShowing())) return false;
+        return true;
     }
 
     public void clickOnConfirm(ActionEvent actionEvent) {
