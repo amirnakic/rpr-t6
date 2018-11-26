@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -45,11 +45,11 @@
                     </rowConstraints>
                      <children>
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="101.0" text="Ime :" textAlignment="CENTER" />
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="nameField" promptText="Ime studenta" GridPane.columnIndex="1" />
+                        <TextField fx:id="surnameField" promptText="Prezime studenta" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="101.0" text="Prezime :" textAlignment="CENTER" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="101.0" text="Indeks :" textAlignment="CENTER" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="indexField" promptText="Broj indeksa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -73,9 +73,9 @@
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="101.0" text="JMBG :" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" text="Datum rođenja :" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="Mjesto rođenja :" GridPane.rowIndex="2" />
-                        <TextField prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" />
-                        <DatePicker promptText="Datum" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                         <ComboBox editable="true" prefWidth="150.0" promptText="Mjesto" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="jmbgField" prefHeight="25.0" prefWidth="113.0" promptText="JMBG" GridPane.columnIndex="1" />
+                        <DatePicker fx:id="dateField" promptText="Datum" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                         <ComboBox fx:id="placeOfBirthField" editable="true" prefWidth="150.0" promptText="Mjesto" GridPane.columnIndex="1" GridPane.rowIndex="2">
                              <items>
                                  <FXCollections fx:factory="observableArrayList">
                                      <String fx:value="Sarajevo" />
@@ -110,9 +110,9 @@
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" text="Kontakt adresa :" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="103.0" text="Kontakt telefon :" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="99.0" text="E-mail adresa :" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="adressField" promptText="Kontakt adresa" GridPane.columnIndex="1" />
+                        <TextField fx:id="telephoneField" promptText="Kontakt telefon" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="eMailField" promptText="E-mail adresa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -140,7 +140,7 @@
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="113.0" text="Ciklus :" GridPane.rowIndex="2" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="131.0" text="Status :" GridPane.rowIndex="3" />
                         <Label text="Boračka kategorija :" GridPane.rowIndex="4" />
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1">
+                        <ChoiceBox fx:id="departmentBox" prefWidth="150.0" GridPane.columnIndex="1">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <String fx:value="AE" />
@@ -150,7 +150,7 @@
                                 </FXCollections>
                             </items>
                         </ChoiceBox>
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <ChoiceBox fx:id="yearBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                          <items>
                              <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Prva" />
@@ -159,15 +159,17 @@
                              </FXCollections>
                          </items>
                      </ChoiceBox>
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <ChoiceBox fx:id="cycleBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                          <items>
                              <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Bachelor" />
                                  <String fx:value="Master" />
+                                 <String fx:value="Doktorski studij" />
+                                 <String fx:value="Stručni studij" />
                              </FXCollections>
                          </items>
                      </ChoiceBox>
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <ChoiceBox fx:id="statusBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <String fx:value="Redovan" />
@@ -175,7 +177,7 @@
                                 </FXCollections>
                             </items>
                         </ChoiceBox>
-                        <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <ChoiceBox fx:id="categoryBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <String fx:value="DA" />
@@ -188,6 +190,6 @@
                </children></AnchorPane>
         </content>
       </TitledPane>
-      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="416.0" text="Potvrdi" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+      <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#clickOnConfirm" prefHeight="30.0" prefWidth="415.0" text="Potvrdi" GridPane.columnSpan="2" GridPane.rowIndex="2" />
    </children>
 </GridPane>
