@@ -114,6 +114,7 @@ public class Controller {
         return matcher.find();
     }
     public static boolean isValidTelephone(String nmbr){
+        if (nmbr.isEmpty()) return true;
         Pattern pattern = Pattern.compile("\\d{3}-\\d{7}");
         Pattern pattern1 = Pattern.compile("\\d{3}-\\d{6}");
         Matcher matcher = pattern.matcher(nmbr);
@@ -203,6 +204,7 @@ public class Controller {
                 }
             }
         });
+        telBrojValidan = true;
         telephoneField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
@@ -252,11 +254,40 @@ public class Controller {
     }
 
     public boolean formularValidan() {
-        if (!(imeValidno && prezimeValidno && indeksValidan && jmbgValidan && datumValidan && emailValidan && telBrojValidan && mjestoValidno && genderBox.isShowing())) return false;
+        if (!(imeValidno && prezimeValidno && indeksValidan && jmbgValidan && datumValidan && emailValidan && telBrojValidan && mjestoValidno && genderBox.getValue() != null)) return false;
         return true;
     }
 
     public void clickOnConfirm(ActionEvent actionEvent) {
+        if (!formularValidan()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Nije validno");
+            alert.setHeaderText("Formular za unos podataka o studentu nije validan!");
+            alert.setContentText("Crvenom bojom označeni su podaci koji su pogrešni ili nedostaju.");
+            alert.show();
+        }
+        else {
+            System.out.println("-----PODACI O STUDENTU UNESENI PREKO FORMULARA-----");
+            System.out.println(" - Osnovni podaci - \n" + "Ime i prezime: " + nameField.getText() + " " + surnameField.getText() + "\nBroj indeksa: " + indexField.getText() + "\nSpol: " + genderBox.getValue().toString());
+            System.out.println(" - Detaljni lični podaci - \n" + "JMBG: " + jmbgField.getText() + "\nDatum rođenja: " + dateField.getValue().toString() + "\nMjesto rođenja: " + placeOfBirthField.getValue().toString());
+            System.out.println(" - Kontakt podaci - ");
+            if (!adressField.getText().isEmpty()) System.out.println("Kontakt adresa: " + adressField.getText());
+            else if (!telephoneField.getText().isEmpty()) System.out.println("Kontakt telefon: " + telephoneField.getText());
+            System.out.println("E-mail adresa: " + eMailField.getText());
+            if (departmentBox.getValue() != null || yearBox.getValue() != null || cycleBox.getValue() != null || statusBox.getValue() != null || categoryBox.getValue() != null)
+                System.out.println(" - Podaci o studiju - ");
+            if (departmentBox.getValue() != null)
+                System.out.println("Smjer: " + departmentBox.getValue().toString());
+            if (yearBox.getValue() != null)
+                System.out.println("Godina: " + yearBox.getValue().toString());
+            if (cycleBox.getValue() != null)
+                System.out.println("Ciklus: " + cycleBox.getValue().toString());
+            if (statusBox.getValue() != null)
+                System.out.println("Status: " + statusBox.getValue().toString());
+            if(categoryBox.getValue() != null)
+                System.out.println("Boračka kategorija: " + categoryBox.getValue().toString());
+
+        }
     }
 }
 
