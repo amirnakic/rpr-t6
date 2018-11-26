@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<?import java.net.URL?>
 <GridPane hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <stylesheets>
       <URL value="@/css/formular.css">
@@ -47,6 +47,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="101.0" text="Ime :" textAlignment="CENTER" />
@@ -55,6 +56,15 @@
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="101.0" text="Prezime :" textAlignment="CENTER" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="101.0" text="Indeks :" textAlignment="CENTER" GridPane.rowIndex="2" />
                         <TextField fx:id="indexField" promptText="Broj indeksa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="65.0" text="Pol :" GridPane.rowIndex="3" />
+                        <ChoiceBox fx:id="genderBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Muški" />
+                                 <String fx:value="Ženski" />
+                             </FXCollections>
+                         </items>
+                         </ChoiceBox>
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -79,7 +89,7 @@
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" text="Datum rođenja :" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="Mjesto rođenja :" GridPane.rowIndex="2" />
                         <TextField fx:id="jmbgField" prefHeight="25.0" prefWidth="113.0" promptText="JMBG" GridPane.columnIndex="1" />
-                        <DatePicker fx:id="dateField" promptText="Datum" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="dateField" editable="false" promptText="Datum" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                          <ComboBox fx:id="placeOfBirthField" editable="true" prefWidth="150.0" promptText="Mjesto" GridPane.columnIndex="1" GridPane.rowIndex="2">
                              <items>
                                  <FXCollections fx:factory="observableArrayList">
