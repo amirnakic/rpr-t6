@@ -12,6 +12,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(ApplicationExtension.class)
@@ -58,5 +59,40 @@ class MainTest {
         TextField emailBox = robot.lookup("#eMailField").queryAs(TextField.class);
         robot.clickOn("#eMailField").write("amirnakic5@gmail.com");
         assertEquals("amirnakic5@gmail.com", emailBox.getText());
+    }
+
+    @Test
+    public void telephoneTest(FxRobot robot) {
+        TextField telephoneField = robot.lookup("#telephoneField").queryAs(TextField.class);
+        robot.clickOn("#telephoneField").write("062-911818");
+        assertEquals("062-911818", telephoneField.getText());
+    }
+
+    @Test
+    public void adressTest(FxRobot robot) {
+        TextField adressField = robot.lookup("#adressField").queryAs(TextField.class);
+        robot.clickOn("#adressField").write("Kučukovići 14");
+        assertEquals("Kučukovići 14", adressField.getText());
+    }
+
+    @Test
+    public void podaciOStudijutest(FxRobot robot) {
+        ChoiceBox odsjek = robot.lookup("#departmentBox").queryAs(ChoiceBox.class);
+        robot.clickOn("#departmentBox").clickOn("AE");
+        ChoiceBox godina = robot.lookup("#yearBox").queryAs(ChoiceBox.class);
+        robot.clickOn("#yearBox").clickOn("Treća");
+        ChoiceBox ciklus = robot.lookup("#cycleBox").queryAs(ChoiceBox.class);
+        robot.clickOn("#cycleBox").clickOn("Bachelor");
+        ChoiceBox status = robot.lookup("#statusBox").queryAs(ChoiceBox.class);
+        robot.clickOn("#statusBox").clickOn("Redovan");
+        ChoiceBox kategorija = robot.lookup("#categoryBox").queryAs(ChoiceBox.class);
+        robot.clickOn("#categoryBox").clickOn("NE");
+        assertAll("podaci o studiju",()->{
+            assertEquals("AE", odsjek.getValue().toString());
+            assertEquals("Treća", godina.getValue().toString());
+            assertEquals("Bachelor", ciklus.getValue().toString());
+            assertEquals("Redovan", status.getValue().toString());
+            assertEquals("NE", kategorija.getValue().toString());
+        });
     }
 }
