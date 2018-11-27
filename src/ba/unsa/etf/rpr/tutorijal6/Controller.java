@@ -1,4 +1,4 @@
-package sample;
+package ba.unsa.etf.rpr.tutorijal6;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
